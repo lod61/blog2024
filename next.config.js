@@ -1,25 +1,9 @@
-const withMDX = require('@next/mdx')({
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-  },
-})
+const { withContentlayer } = require('next-contentlayer')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-  experimental: {
-    mdxRs: true,
-  },
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        fs: false,
-        path: false,
-      }
-    }
-    return config
-  },
+  reactStrictMode: true,
+  swcMinify: true,
 }
 
-module.exports = withMDX(nextConfig) 
+module.exports = withContentlayer(nextConfig) 
