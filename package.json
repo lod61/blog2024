@@ -10,8 +10,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "next build"
+    "lint": "next lint"
   },
   "dependencies": {
     "@types/node": "^20.10.4",

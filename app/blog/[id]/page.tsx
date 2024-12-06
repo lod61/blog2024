@@ -11,6 +11,15 @@ export async function generateStaticParams() {
   }))
 }
 
+// 添加动态元数据
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const post = await getPostData(params.id)
+  return {
+    title: post.title,
+    description: post.description
+  }
+}
+
 export default async function Post({ params }: { params: { id: string } }) {
   try {
     const post = await getPostData(params.id)
