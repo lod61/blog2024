@@ -1,6 +1,6 @@
-# Blog2024
+# DevLiu's Blog
 
-基于 Next.js 14 构建的个人博客，支持 Markdown 内容管理、评论系统和响应式设计。
+基于 Next.js 14 构建的 DevLiu 的个人博客,支持 Markdown 内容管理、评论系统和响应式设计。
 
 ## 技术栈
 

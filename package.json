@@ -1,7 +1,8 @@
 {
-  "name": "blog2024",
+  "name": "devliu-blog",
   "version": "1.0.0",
   "private": true,
+  "description": "DevLiu's personal blog built with Next.js 14",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
