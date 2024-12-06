@@ -1,7 +1,15 @@
-import { getPostData } from '@/lib/posts'
+import { getPostData, getSortedPostsData } from '@/lib/posts'
 import { notFound } from 'next/navigation'
 import ScrollToTop from '@/components/ScrollToTop'
 import Comments from '@/components/Comments'
+
+// 添加这个函数来生成静态路径
+export async function generateStaticParams() {
+  const posts = getSortedPostsData()
+  return posts.map((post) => ({
+    id: post.id,
+  }))
+}
 
 export default async function Post({ params }: { params: { id: string } }) {
   try {
