@@ -25,10 +25,8 @@ jobs:
       - name: Build
         run: npm run build
         
-      - name: Copy .nojekyll
-        run: |
-          touch out/.nojekyll
-          cp .nojekyll out/
+      - name: Create .nojekyll file
+        run: touch out/.nojekyll
         
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
