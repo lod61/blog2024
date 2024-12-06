@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100`}>
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
           <Navbar />
           <main className="mt-8 sm:mt-12 prose dark:prose-invert max-w-none">

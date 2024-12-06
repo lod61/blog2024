@@ -24,12 +24,11 @@ jobs:
         
       - name: Build
         run: npm run build
-        env:
-          NEXT_PUBLIC_BASE_PATH: /blog2024
-          GITHUB_PAGES: true
         
-      - name: Create .nojekyll file
-        run: touch out/.nojekyll
+      - name: Copy .nojekyll
+        run: |
+          touch out/.nojekyll
+          cp .nojekyll out/
         
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
@@ -37,6 +36,4 @@ jobs:
           branch: gh-pages
           folder: out
           clean: true
-          clean-exclude: |
-            .nojekyll
           token: ${{ secrets.GITHUB_TOKEN }}
