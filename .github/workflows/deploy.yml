@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -7,8 +7,12 @@ on:
 jobs:
   deploy-github-pages:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
       
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -26,18 +30,4 @@ jobs:
         with:
           branch: gh-pages
           folder: out
-
-  deploy-vercel:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
-        
-      - name: Deploy to Vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
