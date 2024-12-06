@@ -127,4 +127,29 @@ export async function getPostData(id: string): Promise<PostData> {
     tags,
     ...otherData
   }
+}
+
+// 添加 getAllPosts 函数
+export function getAllPosts(): PostData[] {
+  // 递归获取所有年份目录下的文章
+  const years = fs.readdirSync(postsDirectory).filter(f => 
+    fs.statSync(path.join(postsDirectory, f)).isDirectory()
+  )
+  
+  return years.flatMap(year => {
+    const yearDir = path.join(postsDirectory, year)
+    return fs.readdirSync(yearDir)
+      .filter(file => file.endsWith('.md'))
+      .map(fileName => {
+        const id = fileName.replace(/\.md$/, '')
+        const fullPath = path.join(yearDir, fileName)
+        const fileContents = fs.readFileSync(fullPath, 'utf8')
+        const matterResult = matter(fileContents)
+
+        return {
+          id,
+          ...(matterResult.data as { title: string; date: string; description: string; tags: string[] }),
+        }
+      })
+  })
 } 

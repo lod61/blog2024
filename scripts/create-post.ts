@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import prompts from 'prompts'
-import { config } from '../config'
+import { blogConfig } from '../config'
 import { generateSlug } from '../lib/utils'
 
 interface PostMetadata {
@@ -16,9 +16,9 @@ interface PostMetadata {
 // 获取所有已存在的标签
 function getAllTags(): string[] {
   return [
-    ...config.tags.categories,
-    ...config.tags.technologies,
-    ...config.tags.concepts
+    ...blogConfig.tags.categories,
+    ...blogConfig.tags.technologies,
+    ...blogConfig.tags.concepts
   ];
 }
 
@@ -56,7 +56,7 @@ function addNewTags(newTags: string[]) {
 
 // 获取所有已存在的系列
 function getAllSeries(): string[] {
-  return Object.keys(config.series);
+  return Object.keys(blogConfig.series);
 }
 
 // 添加新系列到配置文件
@@ -79,6 +79,28 @@ function addNewSeries(seriesName: string) {
   console.log('Added new series:', seriesName);
 }
 
+function getTagsByCategory(): string {
+  const { tags } = blogConfig;
+  return [
+    '\n可用标签:',
+    '\n技术领域:',
+    ...tags.categories.map(t => `  - ${t}`),
+    '\n具体技术:',
+    ...tags.technologies.map(t => `  - ${t}`),
+    '\n概念/模式:',
+    ...tags.concepts.map(t => `  - ${t}`)
+  ].join('\n');
+}
+
+function getAvailableSeries(): string {
+  return [
+    '\n可用系列:',
+    ...Object.entries(blogConfig.series).map(([name, config]) => 
+      `  - ${name}\n    ${config.description}`
+    )
+  ].join('\n');
+}
+
 async function createPost() {
   try {
     const response = await prompts([
@@ -95,18 +117,41 @@ async function createPost() {
       {
         type: 'text',
         name: 'tags',
-        message: '文章标签 (用逗号分隔)'
+        message: `文章标签 (用逗号分隔)${getTagsByCategory()}`,
+        validate: (value: string) => {
+          const tags = value.split(',').map(t => t.trim());
+          const allTags = getAllTags();
+          const invalidTags = tags.filter(tag => !allTags.includes(tag));
+          if (invalidTags.length > 0) {
+            return `无效的标签: ${invalidTags.join(', ')}\n可用标签: ${allTags.join(', ')}`;
+          }
+          return true;
+        }
       },
       {
         type: 'text',
         name: 'series',
-        message: '所属系列 (可选)'
+        message: `所属系列 (可选)${getAvailableSeries()}`,
+        validate: (value: string) => {
+          if (!value) return true;
+          const allSeries = getAllSeries();
+          if (!allSeries.includes(value)) {
+            return '无效的系列';
+          }
+          return true;
+        }
       },
       {
         type: 'number',
         name: 'seriesIndex',
         message: '系列序号 (可选)',
-        initial: undefined
+        validate: (value: number) => {
+          if (!value) return true;  // 序号是可选的
+          if (!Number.isInteger(value)) {
+            return '序号必须是整数';
+          }
+          return true;
+        }
       }
     ]);
 

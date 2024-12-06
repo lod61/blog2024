@@ -1,10 +1,10 @@
 ---
 title: '测试自动生成文章'
-date: '2024-12-06'
-description: '测试自动生成文章描述'
-tags: ['测试自动生成标签']
-series: '自动生成文章'
-seriesIndex: '1'
+date: '2024-01-06'
+description: '测试文章自动生成功能'
+tags: ['test', 'automation']
+series: '前端工程化系列'
+seriesIndex: 4
 ---
 ## 引言
 - 背景介绍

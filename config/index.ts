@@ -1,27 +1,30 @@
 import { blogConfig } from './blog.config'
 
-// 导出统一的配置接口
-export interface BlogConfig {
-  title: string;
-  description: string;
-  author: string;
-  siteUrl: string;
-  series: Record<string, {
-    description: string;
-    order: string[];
-  }>;
-  tags: {
-    categories: string[];
-    technologies: string[];
-    concepts: string[];
-  };
+// 定义系列配置类型
+interface SeriesConfig {
+  description: string
+  order: string[]
 }
 
-// 添加类型验证
-export function validateConfig(config: any): config is BlogConfig {
-  // 实现配置验证逻辑
-  return true;
+// 定义标签配置类型
+interface TagsConfig {
+  categories: string[]
+  technologies: string[]
+  concepts: string[]
+}
+
+// 定义博客配置类型
+interface BlogConfig {
+  title: string
+  description: string
+  author: string
+  siteUrl: string | undefined
+  series: Record<string, SeriesConfig>
+  tags: TagsConfig
 }
 
 // 导出配置
-export const config = blogConfig as BlogConfig; 
+export { blogConfig }
+
+// 导出类型
+export type { BlogConfig as Config }  // 重命名导出类型以避免冲突

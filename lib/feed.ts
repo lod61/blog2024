@@ -1,6 +1,6 @@
 import { Feed } from 'feed'
 import { getAllPosts } from './posts'
-import { config } from '../config'
+import { blogConfig, Config as BlogConfig } from '../config'
 
 export async function generateFeed() {
   const posts = await getAllPosts()
@@ -8,12 +8,12 @@ export async function generateFeed() {
   const date = new Date()
 
   const feed = new Feed({
-    title: config.title,
-    description: config.description,
-    id: config.siteUrl,
-    link: config.siteUrl,
+    title: blogConfig.title,
+    description: blogConfig.description,
+    id: blogConfig.siteUrl,
+    link: blogConfig.siteUrl,
     author: {
-      name: config.author
+      name: blogConfig.author
     },
     language: "zh-CN",
     image: `${siteURL}/logo.png`,
