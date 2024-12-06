@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>DevLiu's Blog</title>
+        <link>http://localhost:3000</link>
+        <description>前端开发技术博客</description>
+        <lastBuildDate>Fri, 06 Dec 2024 20:31:42 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>Next.js Blog</generator>
+        <language>zh-CN</language>
+        <copyright>All rights reserved 2024</copyright>
+        <item>
+            <title><![CDATA[微前端架构入门：概念与选型指南]]></title>
+            <link>http://localhost:3000/2022/micro-frontend-introduction</link>
+            <guid>http://localhost:3000/2022/micro-frontend-introduction</guid>
+            <pubDate>Sun, 20 Nov 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[从零开始了解微前端架构，包括基础概念、技术选型和框架对比，适合初学者和技术决策者。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Vue 3 Composition API 实战指南]]></title>
+            <link>http://localhost:3000/2022/vue3-composition-api</link>
+            <guid>http://localhost:3000/2022/vue3-composition-api</guid>
+            <pubDate>Mon, 05 Dec 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[深入理解 Vue 3 Composition API，掌握响应式系统、组合函数、性能优化等核心技巧。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[深入 Tailwind CSS]]></title>
+            <link>http://localhost:3000/2023/advanced-tailwind-css</link>
+            <guid>http://localhost:3000/2023/advanced-tailwind-css</guid>
+            <pubDate>Thu, 20 Jul 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[探索 Tailwind CSS 的高级特性和最佳实践]]></description>
+        </item>
+        <item>
+            <title><![CDATA[TypeScript 高级模式：类型体操与设计模式]]></title>
+            <link>http://localhost:3000/2023/advanced-typescript-patterns</link>
+            <guid>http://localhost:3000/2023/advanced-typescript-patterns</guid>
+            <pubDate>Sat, 20 May 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[深入探索 TypeScript 的类型系统，掌握高级类型编程技巧，提升代码的类型安全性和可维护性。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[使用 Electron 和 React 构建跨平台桌面应用]]></title>
+            <link>http://localhost:3000/2023/building-electron-react-app</link>
+            <guid>http://localhost:3000/2023/building-electron-react-app</guid>
+            <pubDate>Tue, 15 Aug 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[详细介绍如何使用 Electron 和 React 构建现代桌面应用，包含完整的开发流程和最佳实践]]></description>
+        </item>
+        <item>
+            <title><![CDATA[2023年前端工程师成长指南]]></title>
+            <link>http://localhost:3000/2023/frontend-engineer-roadmap</link>
+            <guid>http://localhost:3000/2023/frontend-engineer-roadmap</guid>
+            <pubDate>Wed, 15 Mar 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[为前端开发者规划职业发展路线，包括技术栈选择、学习建议和进阶方向，助你在前端领域持续成长。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[现代前端工程化：从理论到实践]]></title>
+            <link>http://localhost:3000/2023/frontend-engineering</link>
+            <guid>http://localhost:3000/2023/frontend-engineering</guid>
+            <pubDate>Tue, 15 Aug 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[全面介绍前端工程化体系，包括开发规范、构建优化、CI/CD、监控体系等实践经验。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[前端测试体系：从单元测试到 E2E]]></title>
+            <link>http://localhost:3000/2023/frontend-testing-strategy</link>
+            <guid>http://localhost:3000/2023/frontend-testing-strategy</guid>
+            <pubDate>Mon, 25 Sep 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[构建完整的前端测试体系，包括单元测试、集成测试、E2E测试的实践指南和自动化方案。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[GraphQL 高级模式与实践]]></title>
+            <link>http://localhost:3000/2023/graphql-advanced-patterns</link>
+            <guid>http://localhost:3000/2023/graphql-advanced-patterns</guid>
+            <pubDate>Tue, 17 Jan 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[深入探讨 GraphQL 的高级用法、性能优化和最佳实践]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Web 应用集成 ChatGPT API 实践指南]]></title>
+            <link>http://localhost:3000/2023/integrating-chatgpt-api</link>
+            <guid>http://localhost:3000/2023/integrating-chatgpt-api</guid>
+            <pubDate>Sun, 15 Oct 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[详细介绍如何在前端项目中集成和使用 ChatGPT API，包括流式响应、错误处理等实践经验。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[微前端架构：深入实践与性能优化]]></title>
+            <link>http://localhost:3000/2023/micro-frontend-architecture</link>
+            <guid>http://localhost:3000/2023/micro-frontend-architecture</guid>
+            <pubDate>Sun, 10 Sep 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[基于实际项目经验，深入探讨微前端架构的实现细节、性能优化和最佳实践。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Next.js 13+ 服务端渲染实战指南]]></title>
+            <link>http://localhost:3000/2023/nextjs-server-side-rendering</link>
+            <guid>http://localhost:3000/2023/nextjs-server-side-rendering</guid>
+            <pubDate>Mon, 10 Jul 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[深入解析 Next.js 的 SSR、SSG、ISR 等渲染策略，结合实际项目经验讲解性能优化和最佳实践。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[React Hooks 高级模式与实践]]></title>
+            <link>http://localhost:3000/2023/react-hooks-advanced-patterns</link>
+            <guid>http://localhost:3000/2023/react-hooks-advanced-patterns</guid>
+            <pubDate>Thu, 15 Jun 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[深入探讨 React Hooks 的高级用法、自定义 Hooks 设计模式和性能优化策略]]></description>
+        </item>
+        <item>
+            <title><![CDATA[React Hooks 进阶：设计模式与实践指南]]></title>
+            <link>http://localhost:3000/2023/react-hooks-best-practices</link>
+            <guid>http://localhost:3000/2023/react-hooks-best-practices</guid>
+            <pubDate>Mon, 20 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[深入探讨 React Hooks 的高级用法、常见陷阱和性能优化技巧，结合实际案例讲解最佳实践。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[React 性能优化实战指南]]></title>
+            <link>http://localhost:3000/2023/react-performance-optimization</link>
+            <guid>http://localhost:3000/2023/react-performance-optimization</guid>
+            <pubDate>Tue, 25 Jul 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[深入探讨 React 应用的性能优化策略，从组件优化到构建优化的全方位指南。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Web 应用安全最佳实践]]></title>
+            <link>http://localhost:3000/2023/web-security-best-practices</link>
+            <guid>http://localhost:3000/2023/web-security-best-practices</guid>
+            <pubDate>Tue, 11 Apr 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[全面的 Web 应用安全指南，包括常见漏洞防护、安全架构和渗透测试]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Webpack 5 深入解析与实践]]></title>
+            <link>http://localhost:3000/2023/webpack-in-depth</link>
+            <guid>http://localhost:3000/2023/webpack-in-depth</guid>
+            <pubDate>Mon, 10 Apr 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[深入理解 Webpack 5 的工作原理，掌握配置技巧和性能优化方案。]]></description>
+        </item>
+        <item>
+            <title><![CDATA[测试自动生成文章]]></title>
+            <link>http://localhost:3000/2024/1733511472520-ce-shi-zi-dong-sheng-cheng-wen-zhang</link>
+            <guid>http://localhost:3000/2024/1733511472520-ce-shi-zi-dong-sheng-cheng-wen-zhang</guid>
+            <pubDate>Sat, 06 Jan 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[测试文章自动生成功能]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Welcome to My Blog!]]></title>
+            <link>http://localhost:3000/2024/hello-world</link>
+            <guid>http://localhost:3000/2024/hello-world</guid>
+            <pubDate>Mon, 01 Jan 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[这是我的个人技术博客的第一篇文章，主要介绍博客的内容方向和未来计划。]]></description>
+        </item>
+    </channel>
+</rss>

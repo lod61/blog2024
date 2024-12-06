@@ -1,21 +1,54 @@
-import { z } from 'zod';
+import { blogConfig } from '../config'
 
-const PostSchema = z.object({
-  title: z.string(),
-  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  description: z.string().max(200),
-  tags: z.array(z.string()),
-  series: z.string().optional(),
-  seriesIndex: z.number().optional(),
-  relatedPosts: z.array(z.string()).optional()
-});
+export interface PostFrontmatter {
+  title: string
+  date: string
+  description: string
+  tags: string[]
+  series?: string
+  seriesIndex?: number
+}
 
-export function validatePost(frontmatter: any) {
-  try {
-    PostSchema.parse(frontmatter);
-    return true;
-  } catch (error) {
-    console.error('Invalid post metadata:', error);
-    return false;
+export interface PostValidationResult {
+  isValid: boolean
+  errors: string[]
+}
+
+export function validatePost(frontmatter: PostFrontmatter): PostValidationResult {
+  const errors: string[] = []
+
+  // 验证必填字段
+  if (!frontmatter.title) errors.push('Missing title')
+  if (!frontmatter.date) errors.push('Missing date')
+  if (!frontmatter.description) errors.push('Missing description')
+  if (!frontmatter.tags) errors.push('Missing tags')
+
+  // 验证标签
+  if (frontmatter.tags) {
+    const allTags = [
+      ...blogConfig.tags.categories,
+      ...blogConfig.tags.technologies,
+      ...blogConfig.tags.concepts
+    ]
+    const invalidTags = frontmatter.tags.filter(tag => !allTags.includes(tag))
+    if (invalidTags.length > 0) {
+      errors.push(`Invalid tags: ${invalidTags.join(', ')}`)
+    }
+  }
+
+  // 验证系列
+  if (frontmatter.series) {
+    const validSeries = Object.keys(blogConfig.series)
+    if (!validSeries.includes(frontmatter.series)) {
+      errors.push(`Invalid series: ${frontmatter.series}`)
+    }
+    if (frontmatter.seriesIndex && !Number.isInteger(frontmatter.seriesIndex)) {
+      errors.push('Series index must be a number')
+    }
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors
   }
 } 

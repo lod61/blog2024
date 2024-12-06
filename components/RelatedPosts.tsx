@@ -16,26 +16,21 @@ export default function RelatedPosts({ currentPost, maxPosts = 3 }: RelatedPosts
     )
     .slice(0, maxPosts)
 
-  if (relatedPosts.length === 0) return null
+  if (relatedPosts.length === 0) {
+    return null
+  }
 
   return (
-    <div className="mt-8 border-t pt-8">
+    <div>
       <h2 className="text-2xl font-bold mb-4">相关文章</h2>
       <div className="space-y-4">
         {relatedPosts.map(post => (
           <Link 
             key={post.id}
-            href={`/blog/${post.id}`}
-            className="block group"
+            href={`/${post.date.substring(0, 4)}/${post.id}`}
+            className="block hover:text-green-500 transition-colors"
           >
-            <article className="space-y-2">
-              <h3 className="text-lg font-semibold group-hover:text-green-600 transition-colors">
-                {post.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
-                {post.description}
-              </p>
-            </article>
+            {post.title}
           </Link>
         ))}
       </div>

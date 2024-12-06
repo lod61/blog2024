@@ -1,10 +1,25 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { remark } from 'remark'
-import html from 'remark-html'
+import yaml from 'js-yaml'
+import { visit } from 'unist-util-visit'
+
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
 
 const postsDirectory = path.join(process.cwd(), '_posts')
+
+// 配置 gray-matter 使用 js-yaml 4.x
+const options = {
+  engines: {
+    yaml: {
+      parse: (str: string) => yaml.load(str) as Record<string, unknown>,
+      stringify: (obj: unknown) => yaml.dump(obj)
+    }
+  }
+}
 
 export interface PostData {
   id: string
@@ -13,39 +28,13 @@ export interface PostData {
   description: string
   tags: string[]
   contentHtml?: string
-  readingTime?: number
+  series?: string
+  seriesIndex?: number
 }
 
-// 按年份分组的帖子类型
-export interface PostsByYear {
-  year: string
-  posts: PostData[]
-}
-
+// 获取排序后的文章列表
 export function getSortedPostsData(): PostData[] {
-  // 递归获取所有年份目录下的文章
-  const years = fs.readdirSync(postsDirectory).filter(f => 
-    fs.statSync(path.join(postsDirectory, f)).isDirectory()
-  )
-  
-  const allPostsData = years.flatMap(year => {
-    const yearDir = path.join(postsDirectory, year)
-    return fs.readdirSync(yearDir)
-      .filter(file => file.endsWith('.md'))
-      .map(fileName => {
-        const id = fileName.replace(/\.md$/, '')
-        const fullPath = path.join(yearDir, fileName)
-        const fileContents = fs.readFileSync(fullPath, 'utf8')
-        const matterResult = matter(fileContents)
-
-        return {
-          id,
-          ...(matterResult.data as { title: string; date: string; description: string; tags: string[] }),
-        }
-      })
-  })
-
-  return allPostsData.sort((a, b) => {
+  return getAllPosts().sort((a, b) => {
     if (a.date < b.date) {
       return 1
     } else {
@@ -54,35 +43,32 @@ export function getSortedPostsData(): PostData[] {
   })
 }
 
-// 获取按年份分组的文章
-export function getPostsByYear(): PostsByYear[] {
-  const posts = getSortedPostsData()
-  const postsByYear: { [key: string]: PostData[] } = {}
+// 获取所有文章数据
+export function getAllPosts(): PostData[] {
+  const years = fs.readdirSync(postsDirectory).filter(f => 
+    fs.statSync(path.join(postsDirectory, f)).isDirectory()
+  )
+  
+  return years.flatMap(year => {
+    const yearDir = path.join(postsDirectory, year)
+    return fs.readdirSync(yearDir)
+      .filter(file => file.endsWith('.md'))
+      .map(fileName => {
+        const id = fileName.replace(/\.md$/, '')
+        const fullPath = path.join(yearDir, fileName)
+        const fileContents = fs.readFileSync(fullPath, 'utf8')
+        const matterResult = matter(fileContents, options)
 
-  posts.forEach(post => {
-    const year = post.date.substring(0, 4)
-    if (!postsByYear[year]) {
-      postsByYear[year] = []
-    }
-    postsByYear[year].push(post)
+        return {
+          id,
+          ...(matterResult.data as Omit<PostData, 'id' | 'contentHtml'>),
+        }
+      })
   })
-
-  return Object.entries(postsByYear)
-    .map(([year, posts]) => ({
-      year,
-      posts
-    }))
-    .sort((a, b) => b.year.localeCompare(a.year))
 }
 
-function getReadingTime(content: string): number {
-  const wordsPerMinute = 200;
-  const words = content.trim().split(/\s+/).length;
-  return Math.ceil(words / wordsPerMinute);
-}
-
+// 获取文章内容
 export async function getPostData(id: string): Promise<PostData> {
-  // 遍历年份目录查找文章
   const years = fs.readdirSync(postsDirectory).filter(f => 
     fs.statSync(path.join(postsDirectory, f)).isDirectory()
   )
@@ -101,55 +87,52 @@ export async function getPostData(id: string): Promise<PostData> {
   }
 
   const fileContents = fs.readFileSync(fullPath, 'utf8')
-  const matterResult = matter(fileContents)
+  const matterResult = matter(fileContents, options)
 
-  // 修改 markdown 内容，替换链接
-  const contentWithFixedLinks = matterResult.content.replace(
-    /\[([^\]]+)\]\(\/blog\/([^)]+)\)/g,
-    '[$1](/$2)'
-  )
+  const contentWithFixedLinks = matterResult.content
+    .replace(/\[([^\]]+)\]\(\/blog\/(\d{4}\/[^)]+)\)/g, '[$1]/$2')
+    .replace(/\[([^\]]+)\]\(\/(\d{4}\/[^)]+)\)/g, '[$1]/$2')
+    .replace(/\[([^\]]+)\]\((\d{4}\/[^)]+)\)/g, '[$1]/$2')
+    .replace(/【([^】]+)】/g, '[$1]')
+    .replace(/\[([^\]]+)\]\/([^/][^)\s]+)/g, '[$1](/$2)')
 
-  // 转换 markdown 为 HTML
-  const processedContent = await remark()
-    .use(html)
-    .process(contentWithFixedLinks)
+  const processor = unified()
+    .use(remarkParse)
+    .use(remarkRehype as any)
+    .use(rehypeStringify)
+
+  const processedContent = await processor.process(contentWithFixedLinks)
   const contentHtml = processedContent.toString()
-
-  // 避免重复的属性
-  const { title, date, description, tags, ...otherData } = matterResult.data
 
   return {
     id,
     contentHtml,
-    title,
-    date,
-    description,
-    tags,
-    ...otherData
+    ...(matterResult.data as Omit<PostData, 'id' | 'contentHtml'>),
   }
 }
 
-// 添加 getAllPosts 函数
-export function getAllPosts(): PostData[] {
-  // 递归获取所有年份目录下的文章
-  const years = fs.readdirSync(postsDirectory).filter(f => 
-    fs.statSync(path.join(postsDirectory, f)).isDirectory()
-  )
-  
-  return years.flatMap(year => {
-    const yearDir = path.join(postsDirectory, year)
-    return fs.readdirSync(yearDir)
-      .filter(file => file.endsWith('.md'))
-      .map(fileName => {
-        const id = fileName.replace(/\.md$/, '')
-        const fullPath = path.join(yearDir, fileName)
-        const fileContents = fs.readFileSync(fullPath, 'utf8')
-        const matterResult = matter(fileContents)
+// 按年份分组获取文章
+export interface PostsByYear {
+  year: string
+  posts: PostData[]
+}
 
-        return {
-          id,
-          ...(matterResult.data as { title: string; date: string; description: string; tags: string[] }),
-        }
-      })
+export function getPostsByYear(): PostsByYear[] {
+  const posts = getAllPosts()
+  const postsByYear: { [key: string]: PostData[] } = {}
+
+  posts.forEach(post => {
+    const year = post.date.substring(0, 4)
+    if (!postsByYear[year]) {
+      postsByYear[year] = []
+    }
+    postsByYear[year].push(post)
   })
+
+  return Object.entries(postsByYear)
+    .map(([year, posts]) => ({
+      year,
+      posts
+    }))
+    .sort((a, b) => b.year.localeCompare(a.year))
 } 

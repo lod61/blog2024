@@ -42,7 +42,7 @@ relatedPosts: ['2023/frontend-engineering', '2023/react-hooks-best-practices']
   - 深度映射
 - 模板字面量类型
   - 字符串操作
-  - 模式匹配
+  - 模式匹���
   - 类型推导
 - 递归类型
   - 深层结构
@@ -130,8 +130,8 @@ relatedPosts: ['2023/frontend-engineering', '2023/react-hooks-best-practices']
   - 构建配置
 
 ## 延伸阅读
-- 工程化实践？请查看：[现代前端工程化实践](/blog/2023/frontend-engineering)
-- React 与 TS？请查看：[React Hooks 进阶指南](/blog/2023/react-hooks-best-practices)
+- 工程化实践？请查看：[现代前端工程化实践](2023/frontend-engineering)
+- React 集成？请查看：[React 性能优化实战指南](2023/react-performance-optimization)
 
 ## 总结
 - 类型系统最佳实践

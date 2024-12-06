@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://localhost:3000</id>
+    <title>DevLiu's Blog</title>
+    <updated>2024-12-06T20:31:42.983Z</updated>
+    <generator>Next.js Blog</generator>
+    <author>
+        <name>DevLiu</name>
+        <uri>http://localhost:3000</uri>
+    </author>
+    <link rel="alternate" href="http://localhost:3000"/>
+    <link rel="self" href="http://localhost:3000/rss/atom.xml"/>
+    <subtitle>前端开发技术博客</subtitle>
+    <icon>http://localhost:3000/favicon.ico</icon>
+    <rights>All rights reserved 2024</rights>
+    <entry>
+        <title type="html"><![CDATA[微前端架构入门：概念与选型指南]]></title>
+        <id>http://localhost:3000/2022/micro-frontend-introduction</id>
+        <link href="http://localhost:3000/2022/micro-frontend-introduction"/>
+        <updated>2022-11-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[从零开始了解微前端架构，包括基础概念、技术选型和框架对比，适合初学者和技术决策者。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Vue 3 Composition API 实战指南]]></title>
+        <id>http://localhost:3000/2022/vue3-composition-api</id>
+        <link href="http://localhost:3000/2022/vue3-composition-api"/>
+        <updated>2022-12-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[深入理解 Vue 3 Composition API，掌握响应式系统、组合函数、性能优化等核心技巧。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[深入 Tailwind CSS]]></title>
+        <id>http://localhost:3000/2023/advanced-tailwind-css</id>
+        <link href="http://localhost:3000/2023/advanced-tailwind-css"/>
+        <updated>2023-07-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[探索 Tailwind CSS 的高级特性和最佳实践]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[TypeScript 高级模式：类型体操与设计模式]]></title>
+        <id>http://localhost:3000/2023/advanced-typescript-patterns</id>
+        <link href="http://localhost:3000/2023/advanced-typescript-patterns"/>
+        <updated>2023-05-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[深入探索 TypeScript 的类型系统，掌握高级类型编程技巧，提升代码的类型安全性和可维护性。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用 Electron 和 React 构建跨平台桌面应用]]></title>
+        <id>http://localhost:3000/2023/building-electron-react-app</id>
+        <link href="http://localhost:3000/2023/building-electron-react-app"/>
+        <updated>2023-08-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[详细介绍如何使用 Electron 和 React 构建现代桌面应用，包含完整的开发流程和最佳实践]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2023年前端工程师成长指南]]></title>
+        <id>http://localhost:3000/2023/frontend-engineer-roadmap</id>
+        <link href="http://localhost:3000/2023/frontend-engineer-roadmap"/>
+        <updated>2023-03-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[为前端开发者规划职业发展路线，包括技术栈选择、学习建议和进阶方向，助你在前端领域持续成长。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[现代前端工程化：从理论到实践]]></title>
+        <id>http://localhost:3000/2023/frontend-engineering</id>
+        <link href="http://localhost:3000/2023/frontend-engineering"/>
+        <updated>2023-08-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[全面介绍前端工程化体系，包括开发规范、构建优化、CI/CD、监控体系等实践经验。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[前端测试体系：从单元测试到 E2E]]></title>
+        <id>http://localhost:3000/2023/frontend-testing-strategy</id>
+        <link href="http://localhost:3000/2023/frontend-testing-strategy"/>
+        <updated>2023-09-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[构建完整的前端测试体系，包括单元测试、集成测试、E2E测试的实践指南和自动化方案。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[GraphQL 高级模式与实践]]></title>
+        <id>http://localhost:3000/2023/graphql-advanced-patterns</id>
+        <link href="http://localhost:3000/2023/graphql-advanced-patterns"/>
+        <updated>2023-01-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[深入探讨 GraphQL 的高级用法、性能优化和最佳实践]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Web 应用集成 ChatGPT API 实践指南]]></title>
+        <id>http://localhost:3000/2023/integrating-chatgpt-api</id>
+        <link href="http://localhost:3000/2023/integrating-chatgpt-api"/>
+        <updated>2023-10-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[详细介绍如何在前端项目中集成和使用 ChatGPT API，包括流式响应、错误处理等实践经验。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[微前端架构：深入实践与性能优化]]></title>
+        <id>http://localhost:3000/2023/micro-frontend-architecture</id>
+        <link href="http://localhost:3000/2023/micro-frontend-architecture"/>
+        <updated>2023-09-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[基于实际项目经验，深入探讨微前端架构的实现细节、性能优化和最佳实践。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Next.js 13+ 服务端渲染实战指南]]></title>
+        <id>http://localhost:3000/2023/nextjs-server-side-rendering</id>
+        <link href="http://localhost:3000/2023/nextjs-server-side-rendering"/>
+        <updated>2023-07-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[深入解析 Next.js 的 SSR、SSG、ISR 等渲染策略，结合实际项目经验讲解性能优化和最佳实践。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[React Hooks 高级模式与实践]]></title>
+        <id>http://localhost:3000/2023/react-hooks-advanced-patterns</id>
+        <link href="http://localhost:3000/2023/react-hooks-advanced-patterns"/>
+        <updated>2023-06-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[深入探讨 React Hooks 的高级用法、自定义 Hooks 设计模式和性能优化策略]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[React Hooks 进阶：设计模式与实践指南]]></title>
+        <id>http://localhost:3000/2023/react-hooks-best-practices</id>
+        <link href="http://localhost:3000/2023/react-hooks-best-practices"/>
+        <updated>2023-11-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[深入探讨 React Hooks 的高级用法、常见陷阱和性能优化技巧，结合实际案例讲解最佳实践。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[React 性能优化实战指南]]></title>
+        <id>http://localhost:3000/2023/react-performance-optimization</id>
+        <link href="http://localhost:3000/2023/react-performance-optimization"/>
+        <updated>2023-07-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[深入探讨 React 应用的性能优化策略，从组件优化到构建优化的全方位指南。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Web 应用安全最佳实践]]></title>
+        <id>http://localhost:3000/2023/web-security-best-practices</id>
+        <link href="http://localhost:3000/2023/web-security-best-practices"/>
+        <updated>2023-04-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[全面的 Web 应用安全指南，包括常见漏洞防护、安全架构和渗透测试]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Webpack 5 深入解析与实践]]></title>
+        <id>http://localhost:3000/2023/webpack-in-depth</id>
+        <link href="http://localhost:3000/2023/webpack-in-depth"/>
+        <updated>2023-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[深入理解 Webpack 5 的工作原理，掌握配置技巧和性能优化方案。]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[测试自动生成文章]]></title>
+        <id>http://localhost:3000/2024/1733511472520-ce-shi-zi-dong-sheng-cheng-wen-zhang</id>
+        <link href="http://localhost:3000/2024/1733511472520-ce-shi-zi-dong-sheng-cheng-wen-zhang"/>
+        <updated>2024-01-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[测试文章自动生成功能]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Welcome to My Blog!]]></title>
+        <id>http://localhost:3000/2024/hello-world</id>
+        <link href="http://localhost:3000/2024/hello-world"/>
+        <updated>2024-01-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[这是我的个人技术博客的第一篇文章，主要介绍博客的内容方向和未来计划。]]></summary>
+    </entry>
+</feed>
