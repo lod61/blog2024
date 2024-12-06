@@ -24,10 +24,14 @@ jobs:
         
       - name: Build
         run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /blog2024
+          GITHUB_PAGES: true
         
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: out
+          clean: true
           token: ${{ secrets.GITHUB_TOKEN }}
