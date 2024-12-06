@@ -1,8 +1,8 @@
 ---
 title: 'Welcome to My Blog!'
 date: '2024-01-01'
-description: '这是我的第一篇博客文章'
-tags: ['welcome', 'introduction']
+description: '这是我的个人技术博客的第一篇文章，主要介绍博客的内容方向和未来计划。'
+tags: ['introduction', 'frontend', 'career']
 ---
 
 Welcome to DevLiu's blog! I'm excited to start sharing my thoughts and experiences in web development.

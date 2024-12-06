@@ -5,25 +5,34 @@
   "description": "DevLiu's personal blog built with Next.js 14",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run validate && next build && npm run build:rss",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "new-post": "ts-node scripts/create-post.ts",
+    "validate": "ts-node scripts/validate-posts.ts",
+    "build:rss": "ts-node scripts/generate-feed.ts"
   },
   "dependencies": {
     "@types/node": "^20.10.4",
+    "@types/pinyin": "^2.10.2",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "date-fns": "^3.0.6",
+    "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "next": "14.0.4",
+    "pinyin": "^4.0.0-alpha.2",
+    "prompts": "^2.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
+    "@types/prompts": "^2.4.9",
     "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^8.17.0",
     "autoprefixer": "^10.4.16",
@@ -31,6 +40,7 @@
     "eslint-config-next": "^15.0.4",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.3.6",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
 }

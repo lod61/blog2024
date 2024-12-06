@@ -1,15 +1,36 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "My Blog | Cactus Theme",
-  description: "A personal blog built with Next.js and Cactus theme",
-};
+  metadataBase: new URL('https://your-domain.com'),
+  title: {
+    default: "DevLiu's Blog",
+    template: '%s | DevLiu\'s Blog'
+  },
+  description: '前端开发者的技术博客，分享 Web 开发经验和最佳实践',
+  openGraph: {
+    type: 'website',
+    locale: 'zh_CN',
+    url: 'https://your-domain.com',
+    siteName: "DevLiu's Blog",
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+      }
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  }
+}
 
 export default function RootLayout({
   children,
@@ -18,10 +39,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100`}>
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <body className={`${inter.className} bg-[#1d1f21] text-[#c9cacc] min-h-screen`}>
+        <div className="max-w-2xl mx-auto px-6 py-8">
           <Navbar />
-          <main className="mt-8 sm:mt-12 prose dark:prose-invert max-w-none">
+          <main className="mt-16">
             {children}
           </main>
           <Footer />

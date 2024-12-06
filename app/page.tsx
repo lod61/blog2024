@@ -1,42 +1,35 @@
 import { getSortedPostsData } from '@/lib/posts'
 import Link from 'next/link'
-import { FiArrowRight } from 'react-icons/fi'
 
 export default function Home() {
-  const posts = getSortedPostsData().slice(0, 5) // 只显示最新的5篇文章
-  
+  const posts = getSortedPostsData()
+
   return (
-    <div className="space-y-12">
-      <section className="space-y-4">
-        <h1 className="text-3xl font-bold">Hello.</h1>
-        <p className="text-lg">
+    <div className="space-y-16">
+      <section className="space-y-8">
+        <h1 className="text-4xl font-mono">Hello.</h1>
+        <p className="text-lg leading-relaxed">
           Welcome to my blog. I write about technology, programming, and other things that interest me.
         </p>
       </section>
-      
-      <section className="space-y-6">
-        <h2 className="text-2xl font-bold">Recent Writing</h2>
+
+      <section className="space-y-8">
+        <h2 className="text-3xl font-mono">Recent Writing</h2>
         <div className="space-y-4">
-          {posts.map((post) => (
-            <article key={post.id} className="flex justify-between items-baseline">
+          {posts.slice(0, 5).map((post) => (
+            <article key={post.id} className="flex justify-between items-baseline group">
               <Link 
-                href={`/blog/${post.id}`}
-                className="hover:text-green-600 transition-colors"
+                href={`/${post.date.substring(0, 4)}/${post.id}`}
+                className="hover:text-green-500 transition-colors border-b border-dotted border-gray-600 hover:border-green-500"
               >
                 {post.title}
               </Link>
-              <time className="text-sm text-gray-500">{post.date}</time>
+              <time className="text-sm text-gray-500">
+                {post.date}
+              </time>
             </article>
           ))}
         </div>
-        
-        <Link 
-          href="/blog" 
-          className="group flex items-center space-x-1 text-green-600 hover:text-green-700 transition-colors mt-8"
-        >
-          <span>View all posts</span>
-          <FiArrowRight className="inline-block group-hover:translate-x-1 transition-transform" />
-        </Link>
       </section>
     </div>
   )

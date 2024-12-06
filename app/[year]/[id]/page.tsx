@@ -7,14 +7,25 @@ import Comments from '@/components/Comments'
 export async function generateStaticParams() {
   const posts = getSortedPostsData()
   return posts.map((post) => ({
+    year: post.date.substring(0, 4),
     id: post.id,
   }))
 }
 
-export default async function Post({ params }: { params: { id: string } }) {
+export default async function Post({ 
+  params 
+}: { 
+  params: { year: string; id: string } 
+}) {
   const post = await getPostData(params.id)
 
   if (!post) {
+    notFound()
+  }
+
+  // 验证年份是否匹配
+  const postYear = post.date.substring(0, 4)
+  if (postYear !== params.year) {
     notFound()
   }
 

@@ -1,15 +1,11 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 export default function Comments() {
-  const commentRef = useRef<HTMLDivElement>(null)
+  const commentsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!commentRef.current || commentRef.current.children.length > 0) {
-      return
-    }
-
     const script = document.createElement('script')
     script.src = "https://giscus.app/client.js"
     script.setAttribute("data-repo", "lod61/blog2024")
@@ -21,21 +17,30 @@ export default function Comments() {
     script.setAttribute("data-reactions-enabled", "1")
     script.setAttribute("data-emit-metadata", "0")
     script.setAttribute("data-input-position", "bottom")
-    script.setAttribute("data-theme", "preferred_color_scheme")
+    script.setAttribute("data-theme", "dark_dimmed")
     script.setAttribute("data-lang", "zh-CN")
-    script.setAttribute("crossorigin", "anonymous")
+    script.crossOrigin = "anonymous"
     script.async = true
 
-    commentRef.current.appendChild(script)
+    if (commentsRef.current) {
+      commentsRef.current.appendChild(script)
+    }
 
     return () => {
-      script.remove()
+      if (commentsRef.current) {
+        const giscusFrame = commentsRef.current.querySelector('iframe')
+        if (giscusFrame) {
+          giscusFrame.remove()
+        }
+        script.remove()
+      }
     }
   }, [])
 
   return (
-    <div className="mt-8 sm:mt-10">
-      <div ref={commentRef} className="w-full overflow-x-auto" />
+    <div className="mt-16 border-t border-gray-800 pt-8">
+      <h2 className="text-xl font-mono mb-8">Comments</h2>
+      <div ref={commentsRef} />
     </div>
   )
 } 

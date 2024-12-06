@@ -13,6 +13,7 @@ export interface PostData {
   description: string
   tags: string[]
   contentHtml?: string
+  readingTime?: number
 }
 
 // 按年份分组的帖子类型
@@ -22,17 +23,26 @@ export interface PostsByYear {
 }
 
 export function getSortedPostsData(): PostData[] {
-  const fileNames = fs.readdirSync(postsDirectory)
-  const allPostsData = fileNames.map((fileName) => {
-    const id = fileName.replace(/\.md$/, '')
-    const fullPath = path.join(postsDirectory, fileName)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const matterResult = matter(fileContents)
+  // 递归获取所有年份目录下的文章
+  const years = fs.readdirSync(postsDirectory).filter(f => 
+    fs.statSync(path.join(postsDirectory, f)).isDirectory()
+  )
+  
+  const allPostsData = years.flatMap(year => {
+    const yearDir = path.join(postsDirectory, year)
+    return fs.readdirSync(yearDir)
+      .filter(file => file.endsWith('.md'))
+      .map(fileName => {
+        const id = fileName.replace(/\.md$/, '')
+        const fullPath = path.join(yearDir, fileName)
+        const fileContents = fs.readFileSync(fullPath, 'utf8')
+        const matterResult = matter(fileContents)
 
-    return {
-      id,
-      ...(matterResult.data as { title: string; date: string; description: string; tags: string[] }),
-    }
+        return {
+          id,
+          ...(matterResult.data as { title: string; date: string; description: string; tags: string[] }),
+        }
+      })
   })
 
   return allPostsData.sort((a, b) => {
@@ -65,22 +75,56 @@ export function getPostsByYear(): PostsByYear[] {
     .sort((a, b) => b.year.localeCompare(a.year))
 }
 
-export async function getPostData(id: string): Promise<PostData> {
-  const fullPath = path.join(postsDirectory, `${id}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
+function getReadingTime(content: string): number {
+  const wordsPerMinute = 200;
+  const words = content.trim().split(/\s+/).length;
+  return Math.ceil(words / wordsPerMinute);
+}
 
-  // 使用 gray-matter 解析 markdown 文件的元数据
+export async function getPostData(id: string): Promise<PostData> {
+  // 遍历年份目录查找文章
+  const years = fs.readdirSync(postsDirectory).filter(f => 
+    fs.statSync(path.join(postsDirectory, f)).isDirectory()
+  )
+  
+  let fullPath = ''
+  for (const year of years) {
+    const filePath = path.join(postsDirectory, year, `${id}.md`)
+    if (fs.existsSync(filePath)) {
+      fullPath = filePath
+      break
+    }
+  }
+  
+  if (!fullPath) {
+    throw new Error(`Post not found: ${id}`)
+  }
+
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
   const matterResult = matter(fileContents)
 
-  // 使用 remark 将 markdown 转换为 HTML
+  // 修改 markdown 内容，替换链接
+  const contentWithFixedLinks = matterResult.content.replace(
+    /\[([^\]]+)\]\(\/blog\/([^)]+)\)/g,
+    '[$1](/$2)'
+  )
+
+  // 转换 markdown 为 HTML
   const processedContent = await remark()
     .use(html)
-    .process(matterResult.content)
+    .process(contentWithFixedLinks)
   const contentHtml = processedContent.toString()
+
+  // 避免重复的属性
+  const { title, date, description, tags, ...otherData } = matterResult.data
 
   return {
     id,
     contentHtml,
-    ...(matterResult.data as { title: string; date: string; description: string; tags: string[] }),
+    title,
+    date,
+    description,
+    tags,
+    ...otherData
   }
 } 
