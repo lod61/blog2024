@@ -6,7 +6,7 @@ export default function Comments() {
   const commentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (commentRef.current?.children?.length > 0) {
+    if (!commentRef.current || commentRef.current.children.length > 0) {
       return
     }
 
@@ -26,7 +26,7 @@ export default function Comments() {
     script.setAttribute("crossorigin", "anonymous")
     script.async = true
 
-    commentRef.current?.appendChild(script)
+    commentRef.current.appendChild(script)
 
     return () => {
       script.remove()
