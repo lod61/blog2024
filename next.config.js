@@ -1,20 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  ...(process.env.VERCEL
+  ...(process.env.GITHUB_PAGES
     ? {
-        // Vercel 环境配置
-        images: {
-          unoptimized: true,
-        }
-      }
-    : {
-        // GitHub Pages 配置
         output: 'export',
         images: {
           unoptimized: true,
         },
         basePath: '/blog2024',
         assetPrefix: '/blog2024/',
+        trailingSlash: true,
+      }
+    : {
+        images: {
+          unoptimized: true,
+        }
       })
 }
 
