@@ -1,6 +1,5 @@
 import { getPostData, getSortedPostsData } from '@/lib/posts'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import ScrollToTop from '@/components/ScrollToTop'
 import Comments from '@/components/Comments'
 
